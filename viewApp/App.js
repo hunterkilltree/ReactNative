@@ -1,5 +1,10 @@
-import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import React, { useState } from 'react'
+import {
+  StyleSheet,
+  Button,
+  Text,
+  View,
+} from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
@@ -42,6 +47,12 @@ const styles = StyleSheet.create({
   //   height: 10,
   //   backgroundColor: 'powderblue',
   // }
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    marginBottom: 10
+  }
 });
 
 const ItemNotation = (props) => {
@@ -64,6 +75,10 @@ const Node = (props) => {
 }
 
 const MainScreen = () => {
+
+  const [count, setCount] = useState(0);
+
+
   return (
     <View style={styles.container}>
       <View style={styles.mapView}>
@@ -74,6 +89,10 @@ const MainScreen = () => {
             <Node nodeId='02' />
             <Node nodeId='03' />
             <Node nodeId='04' />
+            <Button
+              onPress={() => setCount(count + 1)}
+              title="Click me!"
+            />
 
           </View>
           <View style={{ flexDirection: 'column', justifyContent: 'space-around' }}>
@@ -117,7 +136,7 @@ const MainScreen = () => {
       </View>
 
       <View style={styles.itemView}>
-        <ItemNotation itemColor='red' itemName='A' itemQuantity={0} />
+        <ItemNotation itemColor='red' itemName='A' itemQuantity={count} />
         <ItemNotation itemColor='blue' itemName='B' itemQuantity={0} />
         <ItemNotation itemColor='#f57c00' itemName='C' itemQuantity={0} />
         <ItemNotation itemColor='green' itemName='D' itemQuantity={0} />
@@ -126,5 +145,6 @@ const MainScreen = () => {
     </View>
   )
 }
+
 
 export default MainScreen;
